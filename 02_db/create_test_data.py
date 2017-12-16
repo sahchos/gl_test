@@ -68,19 +68,23 @@ for user in users:
 # blocked users 1 year ago and last login in last month
 now = datetime.now().replace(tzinfo=UTC)
 month_ago = now - relativedelta(month=1)
+two_years_ago = now - relativedelta(year=2)
 year_ago = now - relativedelta(year=1)
 
 a = UserFactory.create_batch(
     100,
-    blocked_at=FuzzyDateTime(year_ago, year_ago),
-    last_login_at=FuzzyDateTime(month_ago)
+    blocked_at=FuzzyDateTime(two_years_ago, year_ago).fuzz(),
+    last_login_at=FuzzyDateTime(month_ago).fuzz()
 )
 
 # biggest amount of daily comments
-CommentFactory.create_batch(200, user_id=users[0].id, created_at=FuzzyDateTime(year_ago, year_ago))
+CommentFactory.create_batch(200, user_id=users[0].id, created_at=FuzzyDateTime(year_ago, year_ago).fuzz())
 
 # blocked less than year ago
-UserFactory.create_batch(100, blocked_at=FuzzyDateTime(datetime(2017, 9, 1, tzinfo=UTC)))
+UserFactory.create_batch(100, blocked_at=FuzzyDateTime(datetime(2017, 9, 1, tzinfo=UTC)).fuzz())
+
+# not blocked users
+UserFactory.create_batch(200)
 
 # commit session changes
 session.commit()

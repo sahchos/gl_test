@@ -1,3 +1,4 @@
 envparse==0.2.0
 factory-boy==2.9.2
 SQLAlchemy==1.1.15
+psycopg2==2.7.3.2
