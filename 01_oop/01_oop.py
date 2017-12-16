@@ -50,3 +50,22 @@ class Office(object):
 
     def set_alarm_status(self, is_alarm):
         self.is_alarm = is_alarm
+
+
+if __name__ == "__main__":
+    alarm_observable = AlarmObservable()
+
+    # create offices and attach to alarm observable
+    office_names = ['First', 'Second', 'Third']
+    for name in office_names:
+        alarm_observable.attach(Office(name))
+
+    # turn on alarm and check office statuses
+    print('{0} TURN ON ALARM {0}'.format('=' * 10))
+    alarm_observable.is_alarm = True
+    alarm_observable.display_statuses()
+
+    # turn off alarm and check office statuses
+    print('{0} TURN OFF ALARM {0}'.format('=' * 10))
+    alarm_observable.is_alarm = False
+    alarm_observable.display_statuses()
