@@ -1,0 +1,14 @@
+# Basics
+*.py[cod]
+__pycache__
+
+# Pycharm
+.idea/*
+
+# virtual environments
+.env
+venv/
+
+#SQL
+*.sql
+*.dump
