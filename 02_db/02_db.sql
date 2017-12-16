@@ -20,8 +20,7 @@ CREATE TABLE comments(
 	user_id bigint references users (id)
 );
 
-
 -- 2) write example requests:
--- 2.1) search the first name of user with the biggest amount of dayly comments
+-- 2.1) search the first name of user with the biggest amount of daily comments
 -- 2.2) block the first 10 users without comments
 -- 2.3) select a list of users blocked 1 years ago but with attempts of authorization for a last month
